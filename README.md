@@ -17,6 +17,6 @@ It was built as part of my web development course to practice responsive design,
 - CSS3
 - JavaScript
 
-## 🌐 Live Demo
+## 🌐 Live Demo using rendor
 
-👉 [View it live](https://gazi05.github.io/Marvel-Watch-order/)
+👉 [View it live](https://marvel-watch-order.onrender.com)
