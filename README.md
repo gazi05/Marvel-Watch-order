@@ -15,11 +15,8 @@ It was built as part of my web development course to practice responsive design,
 
 - HTML5
 - CSS3
-- JavaScript (Vanilla JS)
+- JavaScript
 
 ## 🌐 Live Demo
 
 👉 [View it live](https://gazi05.github.io/marvel-watch-order/)
-
-## 📁 Folder Structure
-
