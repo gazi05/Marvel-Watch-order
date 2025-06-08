@@ -1,0 +1,80 @@
+ body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background-color: #101010;
+      color: #fff;
+    }
+
+    header{
+      background-color: #ec0808;
+      padding: 1rem;
+      text-align: center;
+    }
+
+    nav {
+      background-color: #151515;
+      padding: 1rem;
+      text-align: center;
+    }
+
+    nav a {
+      margin: 0 1rem;
+      color: #fff;
+      text-decoration: none;
+    }
+
+    nav a:hover {
+      transition: ease-in-out .2s color;
+      color: #e62429;
+    }
+    footer{ 
+      background-color: #202020;
+      padding: 1rem;
+      text-align: center;
+    }
+    .slider-container {
+  width: 400px;          /* smaller window width */
+  height: 250px;         /* smaller window height */
+  overflow: hidden;      /* hide overflow so only one image visible */
+  position: relative;
+  margin: 2rem auto;
+  border-radius: 10px;
+  box-shadow: 0 0 10px #0005;
+  background-color: #111;
+}
+
+.slider-track {
+  display: flex;         /* arrange images in a row */
+  transition: transform 0.5s ease;
+}
+
+.slider-track img {
+  width: 400px;          /* each image fits container */
+  height: 250px;
+  object-fit: cover;
+  user-select: none;
+  flex-shrink: 0;        /* prevent images from shrinking */
+}
+
+button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.5);
+  border: none;
+  color: white;
+  font-size: 2rem;
+  padding: 0 12px;
+  cursor: pointer;
+  user-select: none;
+  border-radius: 5px;
+  z-index: 10;
+}
+
+#prevBtn {
+  left: 10px;
+}
+
+#nextBtn {
+  right: 10px;
+}
