@@ -19,4 +19,4 @@ It was built as part of my web development course to practice responsive design,
 
 ## 🌐 Live Demo
 
-👉 [View it live](https://gazi05.github.io/marvel-watch-order/)
+👉 [View it live](https://gazi05.github.io/Marvel-Watch-order/)
