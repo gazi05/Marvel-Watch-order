@@ -114,7 +114,7 @@ const movies = [
     year : 2015,
     poster : './images/Ant-man-1.jpg',
     phase : "Phase 2",
-    order : 12 ,
+    order : 12,
     timeline : 14 ,
     description : "Scott Lang, a former thief, must embrace his inner hero and help his mentor, Hank Pym, protect the Ant-Man technology from a new generation of towering threats.",
     trailer : "https://www.youtube.com/watch?v=pWdKf3MneyI"
