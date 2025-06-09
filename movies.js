@@ -26,7 +26,7 @@ const movies = [
   {
     title : "Thor",
     year : 2011,
-    poster : './images/thor.jpeg',
+    poster : './images/Thor.jpeg',
     phase : "Phase 1",
     order : 4 , 
     description : "The powerful but arrogant Norse god Thor is banished to Earth and learns humility while protecting humanity from dark forces."
