@@ -35,45 +35,40 @@
 </section>
 <section id="Release_order">
   <h2>Release Order</h2>
-  <div class="slider-container">
-    <div class="slider-track">
-    </div>
+  <div class="Release_container">
 
-      <button id="prevBtn">&#10094;</button>
-      <button id="nextBtn">&#10095;</button>
-</div>
-
+  </div>
 
 </section>
-
 </main>
 
-<script>
-    const track = document.querySelector('.slider-track');
-    const prevBtn = document.getElementById('prevBtn');
-    const nextBtn = document.getElementById('nextBtn');
-    const container = document.querySelector('.slider-container');
+<script type="module">
+  import movies from './movies.js';
 
-    let currentIndex = 0;
+  document.addEventListener('DOMContentLoaded', () => {
+    const release_cont = document.querySelector('.Release_container');
+    movies.forEach(movie => {
+      const movieElement = document.createElement('div');
+      movieElement.classList.add('movie-card'); // updated class name
 
-    function updateSlide() {
-      const slideWidth = container.clientWidth;
-      track.style.transform = `translateX(${-currentIndex * slideWidth}px)`;
-    }
+      movieElement.innerHTML = `
+        <div class="card-inner">
+          <div class="card-front">
+            <h3>${movie.title}</h3>
+            <img src="${movie.poster}" alt="${movie.title} Poster">
+          </div>
+          <div class="card-back">
+            <p>${movie.description || 'No description available.'}</p>
+            <p>Release Date: ${movie.year}</p>
+            <p>${movie.phase}, Movie Order: ${movie.order}</p>
+          </div>
+        </div>
+      `;
 
-    prevBtn.addEventListener('click', () => {
-      currentIndex = currentIndex === 0 ? images.length - 1 : currentIndex - 1;
-      updateSlide();
+      release_cont.appendChild(movieElement);
     });
-
-    nextBtn.addEventListener('click', () => {
-      currentIndex = currentIndex === images.length - 1 ? 0 : currentIndex + 1;
-      updateSlide();
-    });
-
-    window.addEventListener('resize', updateSlide);
-
-    updateSlide();
+  });
 </script>
+
 </body>
 </html>
