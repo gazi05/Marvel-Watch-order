@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="watch-order.css">
+  <link rel="stylesheet" href="Movies.css">
   <title>Watch Order</title>
 </head>
 <body>
@@ -12,7 +12,6 @@
   </header>
   <nav>
     <a href="index.html#about">About Marvel</a>
-    <a href="watch-order.html">Watch Order</a>
     <a href="movies.html">Movies</a>
     <a href="tv-shows.html">TV Shows</a>
     <a href="comics.html">Comics</a>
@@ -47,26 +46,36 @@
 </main>
 
 <script type="module">
-  import movies from './movies.js';
+  import movies from './Marvel.js';
 
 let currentFilter = 'release'; // default filter
 
+// 1. Read the URL parameter to set initial filter
+const params = new URLSearchParams(window.location.search);
+const sortBy = params.get('sort');
+
+if (sortBy === 'timeline') {
+  currentFilter = 'timeline';
+} else {
+  currentFilter = 'release';
+}
+
+// 2. Grab DOM elements
 const releaseBtn = document.getElementById('releaseBtn');
 const timelineBtn = document.getElementById('timelineBtn');
-const release_cont = document.querySelector('.Release_container');
+const movieContainer = document.querySelector('.Release_container');
 
-function renderMovies(movies) {
-  release_cont.innerHTML = ''; // clear container
+// 3. Function to render movie cards
+function renderMovies(list) {
+  movieContainer.innerHTML = ''; // clear existing
 
-  movies.forEach(movie => {
-    const movieElement = document.createElement('div');
-    movieElement.classList.add('movie-card');
+  list.forEach(movie => {
+    const orderLabel = currentFilter === 'release' ? 'Release Order' : 'Timeline Order';
+    const orderValue = currentFilter === 'release' ? movie.order : movie.timeline;
 
-    // Determine which order to show on back based on currentFilter
-    let orderLabel = currentFilter === 'release' ? 'Release Order' : 'Timeline Order';
-    let orderValue = currentFilter === 'release' ? movie.order : movie.timeline;
-
-    movieElement.innerHTML = `
+    const card = document.createElement('div');
+    card.classList.add('movie-card');
+    card.innerHTML = `
       <div class="card-inner">
         <div class="card-front">
           <h3>${movie.title}</h3>
@@ -80,25 +89,32 @@ function renderMovies(movies) {
         </div>
       </div>
     `;
-
-    release_cont.appendChild(movieElement);
+    movieContainer.appendChild(card);
   });
 }
 
+// 4. Button event listeners
 releaseBtn.addEventListener('click', () => {
   currentFilter = 'release';
   const sorted = [...movies].sort((a, b) => a.order - b.order);
   renderMovies(sorted);
+  // optionally update URL without reload:
+  history.replaceState(null, '', 'movies.html?sort=release');
 });
 
 timelineBtn.addEventListener('click', () => {
   currentFilter = 'timeline';
   const sorted = [...movies].sort((a, b) => a.timeline - b.timeline);
   renderMovies(sorted);
+  history.replaceState(null, '', 'movies.html?sort=timeline');
 });
 
-// Initial load
-renderMovies([...movies].sort((a, b) => a.order - b.order));
+// 5. Initial render based on filter
+const initialList = currentFilter === 'timeline'
+  ? [...movies].sort((a, b) => a.timeline - b.timeline)
+  : [...movies].sort((a, b) => a.order - b.order);
+
+renderMovies(initialList);
 
 
 </script>
