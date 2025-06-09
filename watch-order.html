@@ -33,41 +33,74 @@
     </p>
   </div>
 </section>
-<section id="Release_order">
-  <h2>Release Order</h2>
-  <div class="Release_container">
+<section id="WatchOrder">
+  <h2>Watch Order</h2>
 
+  <div class="filter-buttons">
+    <button id="releaseBtn">Release Order</button>
+    <button id="timelineBtn">Timeline Order</button>
   </div>
 
+  <div class="Release_container"></div>
 </section>
+
 </main>
 
 <script type="module">
   import movies from './movies.js';
 
-  document.addEventListener('DOMContentLoaded', () => {
-    const release_cont = document.querySelector('.Release_container');
-    movies.forEach(movie => {
-      const movieElement = document.createElement('div');
-      movieElement.classList.add('movie-card'); // updated class name
+let currentFilter = 'release'; // default filter
 
-      movieElement.innerHTML = `
-        <div class="card-inner">
-          <div class="card-front">
-            <h3>${movie.title}</h3>
-            <img src="${movie.poster}" alt="${movie.title} Poster">
-          </div>
-          <div class="card-back">
-            <p>${movie.description || 'No description available.'}</p>
-            <p>Release Date: ${movie.year}</p>
-            <p>${movie.phase}, Movie Order: ${movie.order}</p>
-          </div>
+const releaseBtn = document.getElementById('releaseBtn');
+const timelineBtn = document.getElementById('timelineBtn');
+const release_cont = document.querySelector('.Release_container');
+
+function renderMovies(movies) {
+  release_cont.innerHTML = ''; // clear container
+
+  movies.forEach(movie => {
+    const movieElement = document.createElement('div');
+    movieElement.classList.add('movie-card');
+
+    // Determine which order to show on back based on currentFilter
+    let orderLabel = currentFilter === 'release' ? 'Release Order' : 'Timeline Order';
+    let orderValue = currentFilter === 'release' ? movie.order : movie.timeline;
+
+    movieElement.innerHTML = `
+      <div class="card-inner">
+        <div class="card-front">
+          <h3>${movie.title}</h3>
+          <img src="${movie.poster}" alt="${movie.title} Poster">
         </div>
-      `;
+        <div class="card-back">
+          <p>${movie.description || 'No description available.'}</p>
+          <p>Release Date: ${movie.year}</p>
+          <p>${orderLabel}: ${orderValue}</p>
+          <a href="${movie.trailer}" target="_blank">Watch Trailer</a>
+        </div>
+      </div>
+    `;
 
-      release_cont.appendChild(movieElement);
-    });
+    release_cont.appendChild(movieElement);
   });
+}
+
+releaseBtn.addEventListener('click', () => {
+  currentFilter = 'release';
+  const sorted = [...movies].sort((a, b) => a.order - b.order);
+  renderMovies(sorted);
+});
+
+timelineBtn.addEventListener('click', () => {
+  currentFilter = 'timeline';
+  const sorted = [...movies].sort((a, b) => a.timeline - b.timeline);
+  renderMovies(sorted);
+});
+
+// Initial load
+renderMovies([...movies].sort((a, b) => a.order - b.order));
+
+
 </script>
 
 </body>

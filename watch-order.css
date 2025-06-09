@@ -28,10 +28,25 @@ nav a:hover {
   color: #e62429;
 }
 
-footer {
-  background-color: #202020;
-  padding: 1rem;
-  text-align: center;
+.filter-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.filter-buttons button {
+  background-color: #e62429; /* Marvel red */
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  border-radius: 5px;
+}
+
+.filter-buttons button:hover {
+  background-color: #c41d24;
 }
 
 .Release_container {
@@ -103,6 +118,14 @@ footer {
   font-size: 1.1rem;
   text-align: center;
   padding: 1rem;
-  overflow-y: auto;
+  /*overflow-y: auto;*/
   text-shadow: 0 0 3px rgba(0, 0, 0, 0.7);
+}
+.card-back > a {
+  color: #e62429;
+  text-decoration: none;
+  font-weight: bold;
+  &:hover {
+    text-decoration: underline;
+  }
 }
