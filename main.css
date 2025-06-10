@@ -3,8 +3,13 @@
       margin: 0;
       background-color: #101010;
       color: #fff;
+      font-size: 18px;
     }
-
+    p , li {
+      line-height: 1.6;
+      margin: 0.5rem 0;
+      font-size: 1.2rem;
+    } 
     header{
       background-color: #ec0808;
       padding: 1rem;
@@ -12,13 +17,14 @@
     }
 
     nav {
+      display: flex;
+      justify-content: space-evenly;
       background-color: #151515;
-      padding: 1rem;
+      padding: 1.2rem;
       text-align: center;
     }
 
     nav a {
-      margin: 0 1rem;
       color: #fff;
       text-decoration: none;
     }
